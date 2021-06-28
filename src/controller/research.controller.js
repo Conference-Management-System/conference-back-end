@@ -45,7 +45,7 @@ const deleteResearch = async (req, res) => {
   }
 };
 
-//Get post
+//Get research by id
 
 const getResearchById = async (req, res) => {
   try {
