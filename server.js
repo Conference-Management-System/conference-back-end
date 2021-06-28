@@ -6,6 +6,9 @@ const bodyParser = require("body-parser");
 const User = require("./src/model/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const userApi = require("./src/api/user.api");
+const reasearchApi = require("./src/api/research.api");
+const researchApi = require("./src/api/research.api");
 
 const JWT_SECRET =
   "jshdyufu897e$hhv#HvJH$@HV#$HV%#HV$@CG$C@$$G#!vjhiviywe&YGGUDW#@#@#Hvjwfvwlvfwfgwgf";
@@ -88,6 +91,9 @@ app.post("/api/register", async (req, res) => {
 
   res.json({ status: "ok" });
 });
+
+app.use("/api/user", userApi());
+app.use("/api/research", researchApi());
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
