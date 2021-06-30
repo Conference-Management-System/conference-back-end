@@ -8,9 +8,12 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userApi = require("./src/api/user.api");
 const researchApi = require("./src/api/research.api");
+
+const conferenceDetail = require('./src/routes/ConferenceDetail.route');
 const workshopApi = require("./src/api/workshop.api");
 
 const multer = require("multer");
+
 
 const JWT_SECRET =
   "jshdyufu897e$hhv#HvJH$@HV#$HV%#HV$@CG$C@$$G#!vjhiviywe&YGGUDW#@#@#Hvjwfvwlvfwfgwgf";
@@ -110,7 +113,12 @@ app.post("/api/register", async (req, res) => {
 
 app.use("/api/user", userApi());
 app.use("/api/research", researchApi());
+
+app.use('/conferenceDetails', conferenceDetail);
+
+
 app.use("/api/workshop", workshopApi());
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
