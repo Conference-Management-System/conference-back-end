@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 const userApi = require("./src/api/user.api");
 const reasearchApi = require("./src/api/research.api");
 const researchApi = require("./src/api/research.api");
+const conferenceDetail = require('./src/routes/ConferenceDetail.route');
 
 const JWT_SECRET =
   "jshdyufu897e$hhv#HvJH$@HV#$HV%#HV$@CG$C@$$G#!vjhiviywe&YGGUDW#@#@#Hvjwfvwlvfwfgwgf";
@@ -94,6 +95,8 @@ app.post("/api/register", async (req, res) => {
 
 app.use("/api/user", userApi());
 app.use("/api/research", researchApi());
+app.use('/conferenceDetails', conferenceDetail);
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
