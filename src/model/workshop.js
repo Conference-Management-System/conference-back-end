@@ -20,10 +20,7 @@ const WorkshopSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-      required: true,
-    },
+
     mobile: {
       type: String,
       required: true,
