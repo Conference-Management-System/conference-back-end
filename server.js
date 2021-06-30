@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userApi = require("./src/api/user.api");
 const researchApi = require("./src/api/research.api");
+const myadmin = require("./src/routes/myadmin.route");
 
 const conferenceDetail = require('./src/routes/ConferenceDetail.route');
 const workshopApi = require("./src/api/workshop.api");
@@ -113,6 +114,7 @@ app.post("/api/register", async (req, res) => {
 
 app.use("/api/user", userApi());
 app.use("/api/research", researchApi());
+app.use("/myadmin", myadmin);
 
 app.use('/conferenceDetails', conferenceDetail);
 
