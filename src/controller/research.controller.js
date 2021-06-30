@@ -59,11 +59,14 @@ const getResearchById = async (req, res) => {
 //Get all researches
 const getAllResearch = async (req, res) => {
   const status = req.query.research;
+  const username = req.query.research;
 
   try {
     let researches;
     if (status) {
       researches = await Research.find({ status });
+    } else if (username) {
+      researches = await Research.find({ username });
     } else {
       researches = await Research.find();
     }

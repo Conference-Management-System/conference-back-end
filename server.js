@@ -12,7 +12,7 @@ const myadmin = require("./src/routes/myadmin.route");
 
 const conferenceDetail = require('./src/routes/ConferenceDetail.route');
 const workshopApi = require("./src/api/workshop.api");
-
+const path = require("path");
 const multer = require("multer");
 
 
@@ -22,6 +22,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use("/files", express.static(path.join(__dirname, "/files")));
 
 const PORT = process.env.PORT || 8087;
 
@@ -62,54 +63,6 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 
 app.route("/").get((req, res) => {
   res.send("Conference API Working");
-});
-
-app.post("/api/login", async (req, res) => {
-  const { username, password } = req.body;
-
-  const user = await User.findOne({ username }).lean();
-
-  if (!user) {
-    return res.json({ status: "error", error: "Invalid Username/ password" });
-  }
-
-  if (await bcrypt.compare(password, user.password)) {
-    const token = jwt.sign(
-      {
-        id: user._id,
-        username: user.username,
-      },
-      JWT_SECRET
-    );
-
-    res.json({ status: "ok", data: token });
-  }
-
-  res.json({ status: "error", error: "Invalid username/password" });
-});
-
-app.post("/api/register", async (req, res) => {
-  console.log(req.body);
-
-  const { username, password: plainTextPassword, email, type } = req.body;
-
-  const password = await bcrypt.hash(plainTextPassword, 10);
-
-  try {
-    const res = await User.create({
-      username,
-      password,
-      email,
-      type,
-    });
-
-    console.log("User Created successfully :", res);
-  } catch (error) {
-    console.log(error);
-    return res.json({ status: "error" });
-  }
-
-  res.json({ status: "ok" });
 });
 
 app.use("/api/user", userApi());

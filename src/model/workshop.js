@@ -12,7 +12,15 @@ const WorkshopSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    conducter_name: {
+    username: {
+      type: String,
+      required: true,
+    },
+    duration: {
+      type: String,
+      required: true,
+    },
+    description: {
       type: String,
       required: true,
     },

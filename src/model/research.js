@@ -12,7 +12,11 @@ const ResearchSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    researcher_name: {
+    username: {
+      type: String,
+      required: true,
+    },
+    position: {
       type: String,
       required: true,
     },
